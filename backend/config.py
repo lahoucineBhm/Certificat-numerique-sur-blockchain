@@ -10,6 +10,9 @@ with open(ABI_PATH, "r") as f:
 
 
 RPC_URL = "https://sepolia.era.zksync.dev"
-PRIVATE_KEY = "f5bfd9c1416d131d855f9ccf0fb43c3afc3c26e174e2df7dcddb0bb264580dff"
-ACCOUNT_ADDRESS = "0x28AA1B9cCe772fbfd98eF8938CA5da7B5798D88b"
-CONTRACT_ADDRESS = "0xd17018766F4BACAF9b1E01dB28FDB05826D214B6"
+PRIVATE_KEY = os.getenv("PRIVATE_KEY")
+ACCOUNT_ADDRESS = os.getenv("ACCOUNT_ADDRESS")
+CONTRACT_ADDRESS = os.getenv("CONTRACT_ADDRESS")
+
+if not all([RPC_URL, PRIVATE_KEY, ACCOUNT_ADDRESS, CONTRACT_ADDRESS]):
+    raise EnvironmentError("Variables d'environnement manquantes")
