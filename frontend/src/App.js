@@ -10,11 +10,29 @@ function App() {
   return (
     <div>
       <nav className="navbar">
-        <h2>🎓 Certificat Blockchain</h2>
-        <ul>
-          <li onClick={() => setPage("emettre")}>Émettre</li>
-          <li onClick={() => setPage("verifier")}>Vérifier</li>
-          <li onClick={() => setPage("historique")}>Historique</li>
+        <h2 className="brand">🎓 Certificat Blockchain</h2>
+
+        <ul className="nav-links">
+          <li
+            className={`nav-item ${page === "emettre" ? "active" : ""}`}
+            onClick={() => setPage("emettre")}
+          >
+            Émettre
+          </li>
+
+          <li
+            className={`nav-item ${page === "verifier" ? "active" : ""}`}
+            onClick={() => setPage("verifier")}
+          >
+            Vérifier
+          </li>
+
+          <li
+            className={`nav-item ${page === "historique" ? "active" : ""}`}
+            onClick={() => setPage("historique")}
+          >
+            Historique
+          </li>
         </ul>
       </nav>
 

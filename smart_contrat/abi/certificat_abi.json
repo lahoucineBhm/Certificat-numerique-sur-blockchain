@@ -3,10 +3,28 @@
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
+				"indexed": true,
 				"internalType": "string",
 				"name": "hashCertificat",
 				"type": "string"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "emetteur",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "dateEmission",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "dateExpiration",
+				"type": "uint256"
 			},
 			{
 				"indexed": false,
@@ -19,18 +37,6 @@
 				"internalType": "string",
 				"name": "typeCertificat",
 				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "emetteur",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "dateEmission",
-				"type": "uint256"
 			}
 		],
 		"name": "CertificatEmis",
@@ -52,6 +58,11 @@
 				"internalType": "string",
 				"name": "_hashCertificat",
 				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_dateExpiration",
+				"type": "uint256"
 			}
 		],
 		"name": "emettreCertificat",
@@ -60,52 +71,13 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "getCertificatByIndex",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "nom",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "typeCertificat",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "hashCertificat",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "dateEmission",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "emetteur",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [],
-		"name": "getNombreCertificats",
+		"name": "getHistorique",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "string[]",
 				"name": "",
-				"type": "uint256"
+				"type": "string[]"
 			}
 		],
 		"stateMutability": "view",
@@ -122,6 +94,26 @@
 		"name": "verifierCertificat",
 		"outputs": [
 			{
+				"internalType": "bool",
+				"name": "existe",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "valide",
+				"type": "bool"
+			},
+			{
+				"internalType": "enum CertificatNumerique.Statut",
+				"name": "statut",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tempsRestantSecondes",
+				"type": "uint256"
+			},
+			{
 				"internalType": "string",
 				"name": "nom",
 				"type": "string"
@@ -134,6 +126,11 @@
 			{
 				"internalType": "uint256",
 				"name": "dateEmission",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "dateExpiration",
 				"type": "uint256"
 			},
 			{
