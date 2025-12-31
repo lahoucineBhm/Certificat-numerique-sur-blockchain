@@ -8,7 +8,6 @@ ABI_PATH = os.path.join(PROJECT_ROOT, "smart_contrat", "abi", "certificat_abi.js
 with open(ABI_PATH, "r") as f:
     CONTRACT_ABI = f.read()
 
-
 RPC_URL = "https://sepolia.era.zksync.dev"
 PRIVATE_KEY = os.getenv("PRIVATE_KEY")
 ACCOUNT_ADDRESS = os.getenv("ACCOUNT_ADDRESS")
