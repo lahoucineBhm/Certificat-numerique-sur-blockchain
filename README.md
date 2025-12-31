@@ -22,7 +22,7 @@ Développer une application de certification numérique sécurisée sur Ethereum
 - **Remix IDE** (déploiement rapide du contrat)
 - **MetaMask** (wallet + signature + interaction avec le réseau)
 - **Python + Web3.py** (génération, émission et vérification des certificats)
-- (Optionnel) Frontend web pour faciliter l’usage côté utilisateur
+- **react** (Frontend web pour faciliter l’usage côté utilisateur)
 
 ---
 
@@ -37,38 +37,73 @@ Développer une application de certification numérique sécurisée sur Ethereum
 ## ⚙️ Prérequis
 
 - Python **3.9+**
-- Node.js (si ton `frontend/` l’utilise)
+- Node.js 
 - Un wallet **MetaMask**
-- Un réseau Ethereum de test recommandé : **Sepolia**
-- Un RPC Provider (au choix) : **Infura / Alchemy / RPC public**
+- Un réseau Ethereum de test recommandé : **akSync Sepolia**
 
 ---
 
 ## 🚀 Mise en route (Quick Start)
 
-### 1) Déployer le smart contract (Remix + MetaMask)
+### 1) Ajouter zkSync Era Sepolia (Testnet) sur MetaMask
 
-1. Ouvrir Remix : https://remix.ethereum.org
-2. Importer le fichier `.sol` depuis `smart_contrat/`
-3. Compiler le contrat
-4. Onglet **Deploy & Run Transactions** :
-   - Environment : **Injected Provider - MetaMask**
-   - Réseau : **Sepolia** (ou ton réseau)
-5. Déployer → récupérer l’adresse du contrat : `CONTRACT_ADDRESS`
+1. Ouvrir **MetaMask**
+2. Aller dans **Paramètres** → **Réseaux** → **Ajouter un réseau**
+3. Cliquer sur **Ajouter un réseau manuellement**
+4. Renseigner les informations suivantes :
 
-✅ À la fin : tu as l’adresse du contrat + son ABI (Remix peut l’exporter).
+- **Nom du réseau** : zkSync Era Sepolia  
+- **RPC URL** : https://sepolia.era.zksync.dev  
+- **Chain ID** : 300  
+- **Symbole** : ETH  
+- **Explorateur de blocs** : https://sepolia.explorer.zksync.io  
+
+5. Sauvegarder puis **sélectionner ce réseau** dans MetaMask
+
+✅ MetaMask est maintenant connecté au **testnet zkSync Era Sepolia**.
 
 ---
 
-### 2) Configurer le backend Python (Web3.py)
+### 2) Déployer le smart contract sur zkSync Era Sepolia (Remix + MetaMask)
 
-> Dans `backend/`, crée un fichier `.env` (ou adapte la config existante).
+> Objectif : déployer le smart contract Solidity sur **zkSync Era Sepolia (testnet)**.
 
-Exemple de variables :
+#### Étapes
 
-```env
-RPC_URL=https://sepolia.infura.io/v3/TON_INFURA_KEY
-PRIVATE_KEY=TA_CLE_PRIVEE_METAMASK
-ACCOUNT_ADDRESS=0xTON_ADRESSE
-CONTRACT_ADDRESS=0xADRESSE_DU_CONTRAT
-CHAIN_ID=11155111
+1. Ouvrir Remix IDE : https://remix.ethereum.org
+2. Importer le fichier `.sol` depuis le dossier `smart_contrat/`
+3. Aller dans l’onglet **Solidity Compiler**
+   - Sélectionner une version compatible (ex : `0.8.x`)
+   - Cliquer sur **Compile**
+4. Aller dans l’onglet **Deploy & Run Transactions**
+   - **Environment** : `Injected Provider - MetaMask`
+   - Vérifier que MetaMask est bien sur **zkSync Era Sepolia**
+5. Sélectionner le contrat à déployer
+6. Cliquer sur **Deploy**
+7. Confirmer la transaction dans MetaMask
+8. Copier l’adresse du contrat déployé : `CONTRACT_ADDRESS`
+
+🔍 Tu peux vérifier le déploiement sur l’explorateur :
+https://sepolia.explorer.zksync.io
+
+✅ À la fin de cette étape :
+- le smart contract est déployé sur **zkSync Era Sepolia**
+- tu disposes de son **adresse** et de son **ABI**
+
+---
+
+### 3) Configurer le backend Python (Web3.py)
+
+La configuration du backend se fait via le fichier **`config.py`** situé dans le dossier `backend/`.
+
+#### Fichier : `backend/config.py`
+
+Exemple de configuration pour le **testnet zkSync Era Sepolia** :
+
+```python
+RPC_URL = "https://sepolia.era.zksync.dev"
+
+PRIVATE_KEY = "TA_CLE_PRIVEE_METAMASK"
+ACCOUNT_ADDRESS = "0xTON_ADRESSE"
+
+CONTRACT_ADDRESS = "0xADRESSE_DU_CONTRAT"
